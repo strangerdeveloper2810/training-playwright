@@ -1,0 +1,70 @@
+---
+title: QC Training Hub
+description: Tài liệu training cho QC Team - HR Tool Project
+template: splash
+hero:
+  tagline: Tài liệu đào tạo QC từ căn bản đến nâng cao cho HR Tool Project
+  image:
+    file: ../../../assets/houston.webp
+  actions:
+    - text: Bắt đầu học
+      link: /vi/basics/01-fundamentals/
+      icon: right-arrow
+    - text: Playwright Training
+      link: /vi/advanced/08-playwright-training/
+      icon: rocket
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Lộ trình học tập
+
+<CardGrid stagger>
+  <Card title="📚 Căn bản" icon="pencil">
+    QC Fundamentals và Bug Report Template - Nền tảng cho mọi QC Engineer.
+  </Card>
+  <Card title="🧪 Thực hành" icon="document">
+    Smoke Test, Test Cases by Module, Regression Test - Áp dụng vào dự án thực tế.
+  </Card>
+  <Card title="📊 Báo cáo" icon="setting">
+    Test Report Templates - Cách viết báo cáo chuyên nghiệp.
+  </Card>
+  <Card title="🚀 Nâng cao" icon="rocket">
+    API Testing và Playwright Automation - Kỹ năng cho Senior QC.
+  </Card>
+</CardGrid>
+
+## HR Tool Modules
+
+<CardGrid>
+  <Card title="Authentication" icon="approve-check">
+    Login, Logout, Invitation flow, Role-based access
+  </Card>
+  <Card title="Employees" icon="seti:folder">
+    CRUD operations, Filters, Pagination
+  </Card>
+  <Card title="Jobs & Candidates" icon="document">
+    AI parsing, Status management
+  </Card>
+  <Card title="Applications (ATS)" icon="list-format">
+    Pipeline flow: Applied → Screening → Interview → Offer → Hired
+  </Card>
+  <Card title="CV Matching" icon="star">
+    AI-powered matching với score breakdown
+  </Card>
+  <Card title="Interviews" icon="comment-alt">
+    Schedule, Feedback, Rating system
+  </Card>
+</CardGrid>
+
+## Quick Links
+
+- [QC Fundamentals](/vi/basics/01-fundamentals/) - Bắt đầu từ đây
+- [Bug Report Template](/vi/basics/02-bug-report-template/) - Cách report bug chuẩn
+- [Smoke Test Checklist](/vi/practice/03-smoke-test-checklist/) - Kiểm tra nhanh trước deploy
+- [Test Cases by Module](/vi/practice/04-test-cases-by-module/) - Test cases chi tiết
+- [Regression Test](/vi/practice/05-regression-test-checklist/) - Checklist full regression
+- [Test Report Template](/vi/reports/06-test-report-template/) - Template báo cáo
+- [API Testing Guide](/vi/advanced/07-api-testing-guide/) - Test API với Postman/Thunder Client
+- [Playwright Training](/vi/advanced/08-playwright-training/) - Automation testing 6 tuần

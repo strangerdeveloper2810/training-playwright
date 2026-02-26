@@ -1,0 +1,29 @@
+/* Custom styles for QC Training docs */
+:root {
+  --sl-color-accent-low: #1e3a5f;
+  --sl-color-accent: #4F46E5;
+  --sl-color-accent-high: #818cf8;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f8fafc;
+  --sl-color-gray-2: #e2e8f0;
+  --sl-color-gray-3: #cbd5e1;
+  --sl-color-gray-4: #94a3b8;
+  --sl-color-gray-5: #64748b;
+  --sl-color-gray-6: #475569;
+  --sl-color-black: #1e293b;
+}
+
+/* Badge colors */
+.phase-green { background: #D1FAE5; color: #065F46; }
+.phase-yellow { background: #FEF3C7; color: #92400E; }
+.phase-red { background: #FEE2E2; color: #991B1B; }
+
+/* Table improvements */
+table {
+  font-size: 0.9em;
+}
+
+th {
+  background: var(--sl-color-accent);
+  color: white;
+}

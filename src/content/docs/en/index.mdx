@@ -1,0 +1,70 @@
+---
+title: QC Training Hub
+description: Training materials for QC Team - HR Tool Project
+template: splash
+hero:
+  tagline: QC training documentation from basics to advanced for HR Tool Project
+  image:
+    file: ../../../assets/houston.webp
+  actions:
+    - text: Start Learning
+      link: /en/basics/01-fundamentals/
+      icon: right-arrow
+    - text: Playwright Training
+      link: /en/advanced/08-playwright-training/
+      icon: rocket
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Learning Path
+
+<CardGrid stagger>
+  <Card title="Basics" icon="pencil">
+    QC Fundamentals and Bug Report Template - Foundation for every QC Engineer.
+  </Card>
+  <Card title="Practice" icon="document">
+    Smoke Test, Test Cases by Module, Regression Test - Apply to real projects.
+  </Card>
+  <Card title="Reports" icon="setting">
+    Test Report Templates - How to write professional reports.
+  </Card>
+  <Card title="Advanced" icon="rocket">
+    API Testing and Playwright Automation - Skills for Senior QC.
+  </Card>
+</CardGrid>
+
+## HR Tool Modules
+
+<CardGrid>
+  <Card title="Authentication" icon="approve-check">
+    Login, Logout, Invitation flow, Role-based access
+  </Card>
+  <Card title="Employees" icon="seti:folder">
+    CRUD operations, Filters, Pagination
+  </Card>
+  <Card title="Jobs & Candidates" icon="document">
+    AI parsing, Status management
+  </Card>
+  <Card title="Applications (ATS)" icon="list-format">
+    Pipeline flow: Applied → Screening → Interview → Offer → Hired
+  </Card>
+  <Card title="CV Matching" icon="star">
+    AI-powered matching with score breakdown
+  </Card>
+  <Card title="Interviews" icon="comment-alt">
+    Schedule, Feedback, Rating system
+  </Card>
+</CardGrid>
+
+## Quick Links
+
+- [QC Fundamentals](/en/basics/01-fundamentals/) - Start here
+- [Bug Report Template](/en/basics/02-bug-report-template/) - Standard bug reporting
+- [Smoke Test Checklist](/en/practice/03-smoke-test-checklist/) - Quick check before deploy
+- [Test Cases by Module](/en/practice/04-test-cases-by-module/) - Detailed test cases
+- [Regression Test](/en/practice/05-regression-test-checklist/) - Full regression checklist
+- [Test Report Template](/en/reports/06-test-report-template/) - Report templates
+- [API Testing Guide](/en/advanced/07-api-testing-guide/) - API testing with Postman/Thunder Client
+- [Playwright Training](/en/advanced/08-playwright-training/) - 6-week automation testing
