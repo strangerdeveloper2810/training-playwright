@@ -3,15 +3,15 @@ title: QC Training Hub
 description: Training materials for QC Team - HR Tool Project
 template: splash
 hero:
-  tagline: QC training documentation from basics to advanced for HR Tool Project
+  tagline: A training path from complete beginner to junior/mid fullstack tester - manual testing & automation testing with TypeScript and Playwright
   image:
     file: ../../../assets/houston.webp
   actions:
     - text: Start Learning
-      link: /en/basics/01-fundamentals/
+      link: /en/foundations/01-kien-truc-fullstack-cho-tester/
       icon: right-arrow
-    - text: Playwright Training
-      link: /en/advanced/08-playwright-training/
+    - text: Automation Testing
+      link: /en/automation/01-vi-sao-automation-test-pyramid/
       icon: rocket
       variant: minimal
 ---
@@ -21,17 +21,23 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## Learning Path
 
 <CardGrid stagger>
-  <Card title="Basics" icon="pencil">
-    QC Fundamentals and Bug Report Template - Foundation for every QC Engineer.
+  <Card title="🏗️ Foundations" icon="setting">
+    Fullstack architecture, HTTP/network, database, git - the technical groundwork for absolute beginners.
   </Card>
-  <Card title="Practice" icon="document">
-    Smoke Test, Test Cases by Module, Regression Test - Apply to real projects.
+  <Card title="📚 Basics" icon="pencil">
+    QC Fundamentals, test design techniques, writing standard test cases/test plans - foundation for every QC Engineer.
   </Card>
-  <Card title="Reports" icon="setting">
-    Test Report Templates - How to write professional reports.
+  <Card title="🧪 Practice" icon="document">
+    Smoke/Regression Testing, Manual API/DB Testing, Cross-browser, Accessibility, Performance, Security basics.
   </Card>
-  <Card title="Advanced" icon="rocket">
-    API Testing and Playwright Automation - Skills for Senior QC.
+  <Card title="📊 Reports" icon="document">
+    Test Report Templates, Test Metrics & Dashboard - how to write professional reports.
+  </Card>
+  <Card title="🚀 Automation Testing" icon="rocket">
+    21 lessons from TypeScript/Playwright basics to POM, fixtures, API/tRPC testing, CI/CD - your path to becoming an automation tester.
+  </Card>
+  <Card title="🔍 Case Studies" icon="magnifier">
+    Real code analysis from HR Tool: regression tests from fixed bugs, domain-based test suites, multi-role auth.
   </Card>
 </CardGrid>
 
@@ -60,11 +66,16 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 ## Quick Links
 
-- [QC Fundamentals](/en/basics/01-fundamentals/) - Start here
+- [Fullstack Architecture for Testers](/en/foundations/01-kien-truc-fullstack-cho-tester/) - Start here if you're new to tech
+- [QC Fundamentals](/en/basics/01-fundamentals/) - QC foundations
 - [Bug Report Template](/en/basics/02-bug-report-template/) - Standard bug reporting
+- [Test Design Techniques](/en/basics/05-test-design-techniques/) - Test case design techniques
 - [Smoke Test Checklist](/en/practice/03-smoke-test-checklist/) - Quick check before deploy
 - [Test Cases by Module](/en/practice/04-test-cases-by-module/) - Detailed test cases
-- [Regression Test](/en/practice/05-regression-test-checklist/) - Full regression checklist
+- [Manual API Testing](/en/practice/06-manual-api-testing/) - Testing APIs with Postman/tRPC
 - [Test Report Template](/en/reports/06-test-report-template/) - Report templates
-- [API Testing Guide](/en/advanced/07-api-testing-guide/) - API testing with Postman/Thunder Client
-- [Playwright Training](/en/advanced/08-playwright-training/) - 6-week automation testing
+- [Why Automation & Test Pyramid](/en/automation/01-vi-sao-automation-test-pyramid/) - Start the Automation path
+- [Playwright 101](/en/automation/04-playwright-101/) - Setup & your first test
+- [Page Object Model](/en/automation/08-page-object-model/) - Organizing automation code
+- [Best Practices & Cheatsheet](/en/automation/21-best-practices-cheatsheet/) - Quick reference
+- [Case Studies from HR Tool](/en/case-studies/01-regression-tu-bug-da-fix/) - Learn from real fixed bugs

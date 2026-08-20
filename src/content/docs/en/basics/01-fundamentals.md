@@ -78,15 +78,43 @@ Quality Control (QC) is the process of ensuring that a product meets the require
 
 ## 5. HR Tool Overview
 
-HR Tool is a SaaS platform for HR management with modules:
+### Project Description
 
-- **Authentication** - Login, roles, permissions
-- **Employees** - Employee management
-- **Jobs** - Job descriptions with AI parsing
-- **Candidates** - CV management with AI parsing
-- **Applications** - ATS pipeline
-- **Interviews** - Interview scheduling
-- **CV Matching** - AI-powered matching
+HR Tool is a multi-tenant SaaS platform built specifically for **recruitment agencies, headhunting firms, IT staffing/outsourcing vendors, startups, and SMEs** — its focus is candidate sourcing, AI-powered CV-JD matching, and managing a network of recruiting collaborators (CTV), not generic internal HR administration.
+
+Architecture: an **Nx monorepo** with `apps/api` (NestJS 11 + tRPC 11), `apps/web` (React 19 + Vite), `apps/landing` (Astro 5), and `apps/mobile` (React Native) — see [Fullstack Architecture for Testers](../foundations/01-kien-truc-fullstack-cho-tester/) for details.
+
+### Main Modules
+
+| Module | Description | Key Features |
+|--------|-------------|---------------|
+| **Authentication** | Login/logout, member invitations | JWT (7-day access token, 30-day refresh token), invite-only — no open signup |
+| **AI CV-JD Matching** | AI-scored CV vs. JD matching | Multi-provider AI (Gemini/Claude/DeepSeek/Minimax), multi-criteria scoring, suggested interview questions |
+| **Candidates / Jobs** | Candidate profiles & job postings | Automatic AI CV/JD parsing, full-text search (Meilisearch) |
+| **Applications (ATS Pipeline)** | Kanban-style recruitment pipeline | `Applied → Screening → Client Submit → Interview → Offer → Hired/Rejected`, Time-to-Submit/Time-to-Hire tracking |
+| **Client Requisition Portal** | Portal for the agency's clients | Manages headcount, salary range, and commission % per project |
+| **CTV / Referral Network** | Network of candidate-referring collaborators | Dedicated CTV portal, "first-submitted, first-owned" attribution rule, commission lifecycle with warranty/clawback |
+| **Interviews** | Interview scheduling, feedback | Structured evaluation and ratings |
+| **CV Template Engine** | Standardizes candidate CVs into a template | One-click export as agency-branded CVs |
+| **Workflow Automation** | n8n-style automation for ATS rules | Event-triggered rules, dry-run mode before going live |
+| **File Storage** | Storing CVs and attachments | MinIO (S3-compatible, self-hosted) |
+
+:::note[Why this list differs from older docs]
+This list reflects the real feature set documented in hr-tool's `README.vn.md`. If you see older material centered on Employees/Departments/Positions as the core modules, that's outdated — the product's current focus is **sourcing & ATS for agencies**, not internal HR administration.
+:::
+
+### User Roles
+
+| Role | Description | Access |
+|------|--------------|--------|
+| `super_admin` | System owner (`companyId = null`) | Every tenant, system settings |
+| `admin` | Tenant administrator | Full access within their own company |
+| `hr` | Recruiting & HR specialist | Most recruitment-related features |
+| `tech_lead` | Technical interviewer | Read-only + interview feedback |
+
+:::tip[CTV is not one of the four roles above]
+Referral collaborators (CTV) access the platform through a separate **CTV Portal (Referral Portal)**, distinct from the four internal roles above. When writing automation tests, each access type (regular user, CTV, headhunt) has its own `storageState` — see [Case Study: Multi-role Auth & Permission Testing](../case-studies/03-multi-role-auth-permission/).
+:::
 
 ---
 
@@ -96,8 +124,9 @@ HR Tool is a SaaS platform for HR management with modules:
 
 | Item | Value |
 |------|-------|
-| **Web URL** | https://hr-tool-software.netlify.app |
-| **API URL** | https://hr-tool-staging.ddnsfree.com |
+| **Web App URL** | https://hr-tool-software.netlify.app (Netlify) |
+| **API URL** | https://api.staging.ethansoftwaredeveloper.com (VPS + Cloudflare Tunnel) |
+| **Landing Page URL** | https://ethansoftwaredeveloper.com (Vercel) |
 | **Browser** | Chrome (latest) |
 
 ### Test Accounts

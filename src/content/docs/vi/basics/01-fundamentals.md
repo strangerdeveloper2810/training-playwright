@@ -136,35 +136,41 @@ Test trên các trình duyệt sau (theo thứ tự ưu tiên):
 
 ### Mô tả dự án
 
-HR Tool là nền tảng SaaS multi-tenant cho quản lý nhân sự, hỗ trợ:
+HR Tool là nền tảng SaaS multi-tenant chuyên biệt cho **Agency tuyển dụng, công ty Headhunt, đơn vị Outsource/Sourcing nhân sự IT, Startup và SME** — trọng tâm là quy trình *sourcing* ứng viên, AI khớp nối CV-JD, và quản lý mạng lưới cộng tác viên (CTV) tuyển dụng, không phải một phần mềm quản lý nhân sự nội bộ thông thường.
 
-- **Enterprise Mode**: Phòng nhân sự nội bộ
-- **Headhunt Mode**: Công ty tuyển dụng
+Kiến trúc: **Nx monorepo** gồm `apps/api` (NestJS 11 + tRPC 11), `apps/web` (React 19 + Vite), `apps/landing` (Astro 5), `apps/mobile` (React Native) — xem chi tiết ở bài [Kiến trúc Full-stack cho Tester](../foundations/01-kien-truc-fullstack-cho-tester/).
 
 ### Các module chính
 
 | Module | Mô tả | Tính năng chính |
 |--------|-------|-----------------|
-| **Authentication** | Đăng nhập/đăng xuất | JWT tokens, chỉ mời mới đăng ký được |
-| **Dashboard** | Thống kê tổng quan | Biểu đồ, hành động nhanh |
-| **Employees** | Quản lý nhân viên | CRUD, lọc, thống kê |
-| **Departments** | Cơ cấu phòng ban | CRUD, phân loại |
-| **Positions** | Vị trí công việc | CRUD, liên kết phòng ban |
-| **Jobs** | Tin tuyển dụng | AI parse JD, quản lý trạng thái |
-| **Candidates** | Hồ sơ ứng viên | AI parse CV, theo dõi trạng thái |
-| **Applications** | Pipeline ATS | Quản lý giai đoạn, ghi chú |
-| **Interviews** | Lịch phỏng vấn | Feedback, đánh giá |
-| **CV Matching** | AI matching | Điểm chi tiết, câu hỏi phỏng vấn |
-| **Partners** | Khách hàng Headhunt | (Chỉ Headhunt mode) |
+| **Authentication** | Đăng nhập/đăng xuất, mời thành viên | JWT (access token 7 ngày, refresh token 30 ngày), invite-only — không có đăng ký tự do |
+| **AI CV-JD Matching** | Chấm điểm CV so với JD bằng AI | Đa nhà cung cấp AI (Gemini/Claude/DeepSeek/Minimax), chấm điểm nhiều tiêu chí, gợi ý câu hỏi phỏng vấn |
+| **Candidates / Jobs** | Quản lý hồ sơ ứng viên & tin tuyển dụng | AI parse CV/JD tự động, tìm kiếm full-text (Meilisearch) |
+| **Applications (ATS Pipeline)** | Bảng Kanban quy trình tuyển dụng | `Applied → Screening → Client Submit → Interview → Offer → Hired/Rejected`, đo Time-to-Submit/Time-to-Hire |
+| **Client Requisition Portal** | Cổng khách hàng (client) của agency | Quản lý headcount, khung lương, % hoa hồng theo từng dự án |
+| **CTV / Referral Network** | Mạng lưới cộng tác viên giới thiệu ứng viên | Cổng riêng cho CTV, cơ chế "nộp trước - sở hữu trước", vòng đời hoa hồng có bảo hành/thu hồi |
+| **Interviews** | Lịch phỏng vấn, feedback | Đánh giá, rating theo tiêu chí |
+| **CV Template Engine** | Chuẩn hoá CV ứng viên theo mẫu | Xuất CV thương hiệu agency chỉ 1 click |
+| **Workflow Automation** | Tự động hoá quy tắc ATS kiểu n8n | Trigger theo event, chế độ dry-run trước khi áp dụng thật |
+| **File Storage** | Lưu trữ CV, tài liệu đính kèm | MinIO (S3-compatible, self-hosted) |
+
+:::note[Vì sao module thay đổi so với trước]
+Danh sách trên lấy theo tính năng thật đang có trong `README.vn.md` của hr-tool — nếu bạn thấy tài liệu cũ hơn nhắc tới Employees/Departments/Positions như module trung tâm, đó là mô tả đã lỗi thời; trọng tâm hiện tại của sản phẩm là **sourcing & ATS cho agency**, không phải quản trị nhân sự nội bộ.
+:::
 
 ### Vai trò người dùng
 
 | Vai trò | Mô tả | Quyền truy cập |
 |---------|-------|----------------|
-| `super_admin` | Chủ nền tảng | Tất cả công ty, cài đặt hệ thống |
-| `admin` | Quản trị công ty | Toàn quyền trong công ty |
-| `hr` | Nhân viên HR | Hầu hết tính năng trừ cài đặt |
-| `tech_lead` | Lead kỹ thuật | Chỉ đọc + viết phỏng vấn |
+| `super_admin` | Chủ sở hữu hệ thống (`companyId = null`) | Toàn bộ tenant, cài đặt hệ thống |
+| `admin` | Quản trị viên của tenant | Toàn quyền trong company của mình |
+| `hr` | Specialist tuyển dụng & nhân sự | Hầu hết tính năng nghiệp vụ tuyển dụng |
+| `tech_lead` | Phỏng vấn viên kỹ thuật | Chỉ đọc + viết feedback phỏng vấn |
+
+:::tip[CTV không phải 1 trong 4 role trên]
+Cộng tác viên (CTV) giới thiệu ứng viên truy cập qua **Cổng CTV (Referral Portal)** riêng, tách biệt khỏi 4 role nội bộ ở trên. Khi viết automation test, mỗi loại truy cập (user thường, CTV, headhunt) có `storageState` riêng — xem [Case Study: Multi-role Auth & Permission Testing](../case-studies/03-multi-role-auth-permission/).
+:::
 
 ---
 
@@ -174,9 +180,9 @@ HR Tool là nền tảng SaaS multi-tenant cho quản lý nhân sự, hỗ trợ
 
 | Môi trường | URL | Mục đích |
 |------------|-----|----------|
-| **Staging** | https://hr-tool-software.netlify.app | Testing, QC |
-| **Staging API** | https://hr-tool-staging.ddnsfree.com | Test API |
-| **Production** | https://hr-tool-api.vercel.app | Người dùng thật |
+| **Web Application (Staging/QC)** | https://hr-tool-software.netlify.app | Testing, QC — host trên Netlify |
+| **Backend API** | https://api.staging.ethansoftwaredeveloper.com | Test API trực tiếp — host trên VPS qua Cloudflare Tunnel |
+| **Landing Page** | https://ethansoftwaredeveloper.com | Trang marketing — host trên Vercel |
 
 > **Cảnh báo:** Không bao giờ test trên Production với các hành động phá hoại (xóa, sửa dữ liệu quan trọng)
 

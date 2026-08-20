@@ -235,7 +235,7 @@ và khuyến nghị release]
 | Thành phần | Chi tiết |
 |------------|----------|
 | **URL** | https://hr-tool-software.netlify.app |
-| **API URL** | https://hr-tool-staging.ddnsfree.com |
+| **API URL** | https://api.staging.ethansoftwaredeveloper.com |
 | **Database** | PostgreSQL (staging) |
 | **Browser** | Chrome 120, Firefox 121 |
 | **OS** | macOS Sonoma, Windows 11 |

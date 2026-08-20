@@ -119,7 +119,7 @@ HR Tool QC Training Materials
 | Component | Details |
 |-----------|---------|
 | **URL** | https://hr-tool-software.netlify.app |
-| **API URL** | https://hr-tool-staging.ddnsfree.com |
+| **API URL** | https://api.staging.ethansoftwaredeveloper.com |
 | **Browser** | Chrome 120 |
 
 ---
