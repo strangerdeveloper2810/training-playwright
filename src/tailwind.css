@@ -1135,8 +1135,6 @@ a, button, .card, .sl-link-card, input, select {
 [data-theme='light'] .pagination-links a,
 [data-theme='light'] a[rel="next"],
 [data-theme='light'] a[rel="prev"] {
-  display: flex;
-  flex-direction: column;
   padding: 1rem 1.5rem;
   background: #ffffff !important;
   border: 1px solid #e2e8f0 !important;
@@ -1186,8 +1184,6 @@ a, button, .card, .sl-link-card, input, select {
 [data-theme='dark'] .pagination-links a,
 [data-theme='dark'] a[rel="next"],
 [data-theme='dark'] a[rel="prev"] {
-  display: flex;
-  flex-direction: column;
   padding: 1rem 1.5rem;
   background: #21222c !important;
   border: 1px solid #44475a !important;
@@ -1222,6 +1218,15 @@ a, button, .card, .sl-link-card, input, select {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.25rem;
+}
+
+/* ===== HEADER SELECT WIDTH FIX ===== */
+/* Starlight hardcodes the language-select width at 7em (see @astrojs/starlight's
+   LanguageSelect.astro), which is too narrow for "Tiếng Việt" and truncates it
+   with an ellipsis. Override the width via the CSS var Select.astro reads,
+   using !important since the default is set inline on the element. */
+starlight-lang-select label {
+  --sl-select-width: 9.5em !important;
 }
 
 /* ===== GLOBAL TABLE STYLES ===== */

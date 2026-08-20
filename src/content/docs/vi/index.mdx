@@ -3,15 +3,15 @@ title: QC Training Hub
 description: Tài liệu training cho QC Team - HR Tool Project
 template: splash
 hero:
-  tagline: Tài liệu đào tạo QC từ căn bản đến nâng cao cho HR Tool Project
+  tagline: Lộ trình đào tạo QC từ người mới hoàn toàn đến junior/mid fullstack tester - manual testing & automation testing với TypeScript và Playwright
   image:
     file: ../../../assets/houston.webp
   actions:
     - text: Bắt đầu học
-      link: /vi/basics/01-fundamentals/
+      link: /vi/foundations/01-kien-truc-fullstack-cho-tester/
       icon: right-arrow
-    - text: Playwright Training
-      link: /vi/advanced/08-playwright-training/
+    - text: Automation Testing
+      link: /vi/automation/01-vi-sao-automation-test-pyramid/
       icon: rocket
       variant: minimal
 ---
@@ -21,17 +21,23 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## Lộ trình học tập
 
 <CardGrid stagger>
+  <Card title="🏗️ Nền tảng kỹ thuật" icon="setting">
+    Kiến trúc full-stack, HTTP/network, database, git - kiến thức kỹ thuật nền cho người chưa biết gì.
+  </Card>
   <Card title="📚 Căn bản" icon="pencil">
-    QC Fundamentals và Bug Report Template - Nền tảng cho mọi QC Engineer.
+    QC Fundamentals, kỹ thuật thiết kế test case, viết test case/test plan chuẩn - nền tảng cho mọi QC Engineer.
   </Card>
   <Card title="🧪 Thực hành" icon="document">
-    Smoke Test, Test Cases by Module, Regression Test - Áp dụng vào dự án thực tế.
+    Smoke/Regression Test, Manual API/DB Testing, Cross-browser, Accessibility, Performance, Security cơ bản.
   </Card>
-  <Card title="📊 Báo cáo" icon="setting">
-    Test Report Templates - Cách viết báo cáo chuyên nghiệp.
+  <Card title="📊 Báo cáo" icon="document">
+    Test Report Templates, Test Metrics & Dashboard - cách viết báo cáo chuyên nghiệp.
   </Card>
-  <Card title="🚀 Nâng cao" icon="rocket">
-    API Testing và Playwright Automation - Kỹ năng cho Senior QC.
+  <Card title="🚀 Automation Testing" icon="rocket">
+    21 bài từ TypeScript/Playwright cơ bản đến POM, fixtures, API/tRPC testing, CI/CD - lộ trình thành automation tester.
+  </Card>
+  <Card title="🔍 Case Studies" icon="magnifier">
+    Phân tích code thật từ HR Tool: regression từ bug đã fix, test suite theo domain, multi-role auth.
   </Card>
 </CardGrid>
 
@@ -60,11 +66,16 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 ## Quick Links
 
-- [QC Fundamentals](/vi/basics/01-fundamentals/) - Bắt đầu từ đây
+- [Kiến trúc Full-stack cho Tester](/vi/foundations/01-kien-truc-fullstack-cho-tester/) - Bắt đầu từ đây nếu bạn chưa biết gì về kỹ thuật
+- [QC Fundamentals](/vi/basics/01-fundamentals/) - Nền tảng QC
 - [Bug Report Template](/vi/basics/02-bug-report-template/) - Cách report bug chuẩn
+- [Test Design Techniques](/vi/basics/05-test-design-techniques/) - Kỹ thuật thiết kế test case
 - [Smoke Test Checklist](/vi/practice/03-smoke-test-checklist/) - Kiểm tra nhanh trước deploy
 - [Test Cases by Module](/vi/practice/04-test-cases-by-module/) - Test cases chi tiết
-- [Regression Test](/vi/practice/05-regression-test-checklist/) - Checklist full regression
+- [Manual API Testing](/vi/practice/06-manual-api-testing/) - Test API với Postman/tRPC
 - [Test Report Template](/vi/reports/06-test-report-template/) - Template báo cáo
-- [API Testing Guide](/vi/advanced/07-api-testing-guide/) - Test API với Postman/Thunder Client
-- [Playwright Training](/vi/advanced/08-playwright-training/) - Automation testing 6 tuần
+- [Vì sao Automation & Test Pyramid](/vi/automation/01-vi-sao-automation-test-pyramid/) - Bắt đầu lộ trình Automation
+- [Playwright 101](/vi/automation/04-playwright-101/) - Cài đặt & viết test đầu tiên
+- [Page Object Model](/vi/automation/08-page-object-model/) - Tổ chức code automation
+- [Best Practices & Cheatsheet](/vi/automation/21-best-practices-cheatsheet/) - Tổng hợp quick-reference
+- [Case Studies từ HR Tool](/vi/case-studies/01-regression-tu-bug-da-fix/) - Học từ bug thật đã fix
